@@ -19,3 +19,19 @@ Solução IoT para priorização automática de fontes de energia (solar/rede) c
   - desligar   # Ativa modo manual e desliga motor
   - auto       # Retorna para modo automático
   - status     # Exibe dados do sistema
+
+##  Arquitetura do Sistema
+```mermaid
+flowchart TB
+    subgraph Inputs
+        A[Potenciômetro Solar] -->|A0| C[Arduino]
+        B[Potenciômetro Consumo] -->|A1| C
+    end
+
+    subgraph Outputs
+        C -->|D2| D[LED Verde - Solar]
+        C -->|D3| E[LED Vermelho - Rede]
+        C -->|D5| F[Motor DC]
+    end
+
+    C --> G[Serial Monitor] <--> H[Assistente Virtual]
